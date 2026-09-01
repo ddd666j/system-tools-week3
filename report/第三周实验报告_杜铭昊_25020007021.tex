@@ -1,0 +1,79 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=2.1cm,headheight=15pt]{geometry}\usepackage{graphicx,float,booktabs,tabularx,array,xcolor,listings,fancyhdr,hyperref,caption}
+\graphicspath{{assets/}}\definecolor{mainblue}{HTML}{174A7E}\definecolor{codebg}{HTML}{F4F6F8}
+\hypersetup{colorlinks=true,linkcolor=mainblue,urlcolor=mainblue}\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,frame=single,backgroundcolor=\color{codebg},showstringspaces=false}
+\pagestyle{fancy}\fancyhf{}\lhead{系统开发工具基础}\rhead{第三周实验报告}\cfoot{\thepage}\ctexset{section={format=\Large\bfseries\color{mainblue}}}\linespread{1.16}
+\newcommand{\screen}[2]{\begin{figure}[H]\centering\includegraphics[width=\textwidth,height=.62\textheight,keepaspectratio]{#1}\caption{#2}\end{figure}}
+\newcommand{\pair}[4]{\begin{figure}[H]\centering\begin{minipage}{.485\textwidth}\includegraphics[width=\linewidth,height=.30\textheight,keepaspectratio]{#1}\caption*{#2}\end{minipage}\hfill\begin{minipage}{.485\textwidth}\includegraphics[width=\linewidth,height=.30\textheight,keepaspectratio]{#3}\caption*{#4}\end{minipage}\end{figure}}
+\begin{document}
+\begin{titlepage}\centering\vspace*{1.8cm}{\Large 计算机科学与技术学院\par}\vspace{1.3cm}{\Huge\bfseries 系统开发工具基础\par}\vspace{.4cm}{\LARGE\bfseries 第三周实验报告\par}\vspace{2cm}\renewcommand{\arraystretch}{1.7}\begin{tabular}{>{\bfseries}rl}学生姓名：&杜铭昊\\学号：&25020007021\\授课教师：&周小伟\\实验环境：&Ubuntu Linux虚拟机\\报告内容：&课堂第9--12题与10个扩展实例\\实验日期：&2026年9月1日\end{tabular}\vfill{\large Packaging、智能体协作与PyTorch实践\par}\end{titlepage}
+\tableofcontents\clearpage
+\section{实验环境与证据规范}
+实验全部在Ubuntu虚拟机实测，Windows负责同步与GitHub推送。使用Python 3.12.13、build 1.6.0、pytest 9.1.1、PyTorch 2.6.0+cpu、Git和Tectonic。课堂9--12题逐步记录；10个实例保留原理、过程、结果和反思。仓库为\url{https://github.com/ddd666j/system-tools-week3}。
+\section{第9题：从源码构建并安装Wheel}
+\subsection{原理}Wheel是可安装ZIP制品，\texttt{pyproject.toml}声明构建后端、发行名称和命令入口。干净环境只从生成wheel安装，可以证明包不依赖源码目录。
+\subsection{步骤1：建立src布局}创建\texttt{src/greetlab/\_\_init\_\_.py}、\texttt{cli.py}和\texttt{pyproject.toml}，发行名替换为\texttt{greetlab-25020007021}，入口为\texttt{sdt-greet=greetlab.cli:main}。
+\subsection{步骤2：构建制品}\begin{lstlisting}python -m build --no-isolation
+ls -lh dist\end{lstlisting}成功生成sdist与\texttt{py3-none-any.whl}。隔离构建首次因网络无法下载setuptools停止，改用已配置课程环境的\texttt{--no-isolation}完成。
+\screen{q09_01_source_build.png}{第9题：源码结构、项目配置与wheel构建}
+\subsection{步骤3：干净环境安装}新建clean-venv，使用\texttt{--no-index --find-links dist}只从本地wheel安装，版本为0.1.0。
+\subsection{步骤4：目录外运行}切换到\texttt{/tmp}运行\texttt{sdt-greet --name 25020007021}，输出\texttt{Hello, 25020007021!}。
+\screen{q09_02_clean_install.png}{第9题：干净安装与源码目录外执行}
+\subsection{结果与反思}构建、安装和入口均通过。反思：构建成功不等于交付成功，必须在干净环境并离开源码目录验证。
+\clearpage
+\section{第10题：可验证的智能体修复循环}
+\subsection{原理}测试驱动修复先把需求变成失败测试，再实施最小修改、检查diff并复测；智能体建议必须接受人工审查。
+\subsection{步骤1：增加失败测试}复制第9题，为空白姓名编写\texttt{pytest.raises(SystemExit)}并断言退出码2。原实现输出\texttt{Hello, !}，测试以\texttt{DID NOT RAISE SystemExit}失败。
+\screen{q10_01_failing_test.png}{第10题：修复前失败测试}
+\subsection{步骤2：给出受约束提示}提示限定：空白name必须SystemExit(2)，只改输入校验，运行pytest，不得无关重构。
+\subsection{步骤3：最小修复与人工检查}解析后用\texttt{args.name.strip()}判断，为空调用\texttt{parser.error}。diff只新增两行逻辑，无无关修改。
+\subsection{步骤4：复测与AI记录}最终\texttt{1 passed}；\texttt{ai\_log.md}用5行记录提示、修改、命令和人工验证。
+\screen{q10_02_fix_verify.png}{第10题：最小diff、人工复查与最终测试}
+\subsection{结果与反思}失败证据、修复diff和通过证据形成闭环。反思：不能只记录“智能体已完成”，必须保存目标、约束、测试和人工结论。
+\clearpage
+\section{第11题：把协作材料改成可执行信息}
+\subsection{原理}高质量Issue应让他人无需追问即可复现；提交信息解释问题与方案；评审意见明确行为、风险、动作和严重度。
+\subsection{步骤1：重写Issue}写明Windows版本待确认、greetlab 0.1.0、复现命令、期望状态码2、实际状态码0，未知信息标为“待确认”。
+\subsection{步骤2：重写提交信息}标题“拒绝空白姓名参数”使用祈使语气；正文说明原实现只检查参数存在，方案是strip校验并调用parser.error。
+\subsection{步骤3：重写评审意见}标注Blocking，指出无效输入被自动化流程误判的风险，并建议增加退出码2回归测试。
+\pair{q11_01_communication.png}{第11题：完整协作材料}{q11_02_validation.png}{346字符及字段验收}
+\subsection{结果与反思}全文346字符，环境、复现、期望、实际、待确认和Blocking均通过自动检查。反思：简洁不是省略关键事实，而是删除无助于执行的模糊表达。
+\clearpage
+\section{第12题：PyTorch线性回归训练循环}
+\subsection{原理}PyTorch梯度默认累积，每轮必须依次\texttt{zero\_grad}、前向计算、\texttt{backward}和\texttt{step}。评估时调用\texttt{eval}并进入\texttt{no\_grad}，避免构建计算图。
+\subsection{步骤1：构造可复现数据}固定种子20260907，生成101个\texttt{x}与\texttt{y=3x-1}，模型为\texttt{nn.Linear(1,1)}，SGD学习率0.1。
+\subsection{步骤2：补全200轮训练}每轮清零梯度、计算MSE、反向传播和更新参数，没有直接赋值weight与bias。
+\screen{q12_01_training_source.png}{第12题：完整CPU训练循环}
+\subsection{步骤3：评估和验收}训练后\texttt{model.eval()}，在\texttt{torch.no\_grad()}中得到最终损失0、weight约2.999997、bias约-1.000000，损失小于0.001。
+\screen{q12_02_training_result.png}{第12题：学习参数与损失验收}
+\subsection{结果与反思}模型通过梯度下降学习到目标参数。反思：\texttt{eval}控制层行为，\texttt{no\_grad}控制自动求导，两者不能互相替代。
+\clearpage
+\section{10个相关扩展实例}
+\subsection{实例1：Wheel结构与元数据}把wheel作为ZIP读取，验证发行名称、版本、代码和命令入口，并保存SHA-256。7个成员和全部关键元数据通过。\screen{instance01_01_source.png}{实例1：Wheel检查程序}\screen{instance01_02_result.png}{实例1：元数据与入口通过}
+\subsection{实例2：真实CLI退出码基线}用subprocess调用干净环境入口；正常姓名返回0，空白姓名在修复前也错误返回0，成功从进程边界复现缺陷。\screen{instance02_01_source.png}{实例2：子进程测试}\screen{instance02_02_result.png}{实例2：基线行为}
+\clearpage
+\subsection{实例3：可重复构建}固定\texttt{SOURCE\_DATE\_EPOCH}独立构建两次，两份wheel SHA-256一致且cmp逐字节通过。\screen{instance03_01_process.png}{实例3：两次构建}\screen{instance03_02_result.png}{实例3：哈希一致}
+\subsection{实例4：修复版干净安装}重新构建第10题wheel，在全新环境安装；正常姓名返回0，空白姓名返回2且stderr包含规则。\screen{instance04_01_source.png}{实例4：集成测试}\screen{instance04_02_result.png}{实例4：CLI契约通过}
+\clearpage
+\subsection{实例5：Issue质量门禁}模糊Issue缺少5个字段并返回1；修订版139字符且全部字段通过。反思：协作材料也可自动验收。\screen{instance05_01_checker.png}{实例5：门禁程序}\screen{instance05_02_result.png}{实例5：失败与通过}
+\subsection{实例6：训练可重复性}同种子两次训练结果完全一致；另一种子也收敛且损失小于0.001。\screen{instance06_01_source.png}{实例6：训练封装}\screen{instance06_02_result.png}{实例6：重复性结果}
+\clearpage
+\subsection{实例7：梯度累积}连续两次backward且不清零时梯度为2倍；zero\_grad后恢复首次值。首次脚本因命令分组缺空格报错，修正后通过。\screen{instance07_01_source.png}{实例7：梯度实验}\screen{instance07_02_result.png}{实例7：累积比例2.00}
+\subsection{实例8：eval与no\_grad}训练模式Dropout输出不同；评估模式输出一致、不跟踪梯度且training标志为False。\screen{instance08_01_source.png}{实例8：评估程序}\screen{instance08_02_result.png}{实例8：评估契约通过}
+\clearpage
+\subsection{实例9：RECORD完整性}重新计算wheel中6个已记录文件的SHA-256和大小，7条RECORD记录全部一致。\screen{instance09_01_source.png}{实例9：RECORD校验}\screen{instance09_02_result.png}{实例9：制品完整性通过}
+\subsection{实例10：学习率稳定性}学习率0.1在100轮收敛至\texttt{3.06e-6}；2.0迅速发散至NaN。最初50轮未达到阈值，增加轮数；NaN改用\texttt{isfinite}判断。\screen{instance10_01_source.png}{实例10：学习率比较}\screen{instance10_02_result.png}{实例10：收敛与发散}
+\clearpage
+\section{GitHub分阶段提交记录}
+课堂9--10题、11--12题分别提交；扩展实例每两个一次commit，最后报告单独提交。主要历史为\texttt{6d38a83}、\texttt{aed47bc}、\texttt{00690e7}、\texttt{aa2863e}、\texttt{48ed87a}、\texttt{3f7bf7f}和\texttt{a18e186}。
+\screen{commit_classroom_q09_q12_aed47bc_windows.png}{课堂9--12题提交记录}
+\screen{commit_instances01_02_00690e7_windows.png}{实例1--2提交记录}
+\screen{commit_instances03_04_aa2863e_windows.png}{实例3--4提交记录}
+\screen{commit_instances05_06_48ed87a_windows.png}{实例5--6提交记录}
+\screen{commit_instances07_08_3f7bf7f_windows.png}{实例7--8提交记录}
+\screen{commit_instances09_10_a18e186_windows.png}{实例9--10提交记录}
+\section{综合结论与错误反思}
+本周形成“构建制品--干净安装--失败测试--最小修复--协作说明--CPU训练--版本提交”的完整证据链。主要错误包括隔离构建网络失败、Shell分组语法错误、训练轮数不足以及NaN不能普通比较。处理原则是保存失败现象、解释根因、实施最小修正并重新验收。实验说明软件交付不仅需要代码正确，还需要制品可验证、沟通可执行、训练可复现和历史可追踪。
+\end{document}
+
+
