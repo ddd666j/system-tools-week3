@@ -1,0 +1,67 @@
+=== INSTANCE 04: build fixed package ===
+* Getting build dependencies for wheel...
+running egg_info
+creating src/greetlab_25020007021.egg-info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/greetlab
+copying src/greetlab/cli_buggy.py -> build/lib/greetlab
+copying src/greetlab/cli.py -> build/lib/greetlab
+copying src/greetlab/__init__.py -> build/lib/greetlab
+running egg_info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/greetlab
+copying build/lib/greetlab/cli_buggy.py -> build/bdist.linux-x86_64/wheel/./greetlab
+copying build/lib/greetlab/cli.py -> build/bdist.linux-x86_64/wheel/./greetlab
+copying build/lib/greetlab/__init__.py -> build/bdist.linux-x86_64/wheel/./greetlab
+running install_egg_info
+Copying src/greetlab_25020007021.egg-info to build/bdist.linux-x86_64/wheel/./greetlab_25020007021-0.1.0-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/greetlab_25020007021-0.1.0.dist-info/WHEEL
+creating '/home/dmh/桌面/system-tools-week3/practice/instance04/dist/.tmp-fqimzzvg/greetlab_25020007021-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'greetlab/__init__.py'
+adding 'greetlab/cli.py'
+adding 'greetlab/cli_buggy.py'
+adding 'greetlab_25020007021-0.1.0.dist-info/METADATA'
+adding 'greetlab_25020007021-0.1.0.dist-info/WHEEL'
+adding 'greetlab_25020007021-0.1.0.dist-info/entry_points.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/top_level.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built greetlab_25020007021-0.1.0-py3-none-any.whl
+总用量 4.0K
+-rw-rw-r-- 1 dmh dmh 2.2K Aug 31 23:01 greetlab_25020007021-0.1.0-py3-none-any.whl
+=== CLEAN WHEEL-ONLY INSTALL ===
+Using CPython 3.12.13 interpreter at: /home/dmh/.local/bin/python3.12
+Creating virtual environment at: clean-venv
+Activate with: source clean-venv/bin/activate
+Using Python 3.12.13 environment at: clean-venv
+Resolved 1 package in 1ms
+Prepared 1 package in 2ms
+Installed 1 package in 1ms
+ + greetlab-25020007021==0.1.0
+=== REAL CONSOLE CONTRACT ===
+normal_exit=0
+normal_stdout=Hello, 25020007021!
+blank_exit=2
+blank_stderr_contains_error=True
+blank_stderr_contains_rule=True
+integration_contract=passed

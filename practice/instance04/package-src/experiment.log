@@ -1,0 +1,45 @@
+=== Q10 STEP 1: failing test against copied Q09 implementation ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________________ test_blank_name_exits_with_code_2 _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fd58ae844a0>
+
+    def test_blank_name_exits_with_code_2(monkeypatch):
+        monkeypatch.setattr(sys, "argv", ["sdt-greet", "--name", "   "])
+>       with pytest.raises(SystemExit) as exc_info:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SystemExit
+
+tests/test_cli.py:10: Failed
+----------------------------- Captured stdout call -----------------------------
+Hello,    !
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::test_blank_name_exits_with_code_2 - Failed: DID NOT...
+1 failed in 0.01s
+initial_pytest_exit=1
+=== Q10 STEP 2: agent-requested minimal fix ===
+--- src/greetlab/cli_buggy.py	2026-08-31 22:18:11.913672444 -0700
++++ src/greetlab/cli.py	2026-08-31 22:20:05.797085528 -0700
+@@ -5,6 +5,8 @@
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--name", required=True)
+     args = parser.parse_args()
++    if not args.name.strip():
++        parser.error("--name must not be blank")
+     print(f"Hello, {args.name}!")
+ 
+ 
+=== Q10 STEP 3: human diff review ===
++    if not args.name.strip():
++        parser.error("--name must not be blank")
+unrelated_changes=none
+=== Q10 STEP 4: final verification ===
+.                                                                        [100%]
+1 passed in 0.00s
+5 ai_log.md
+核心提示：空白name必须触发SystemExit(2)，仅修改输入校验，并运行pytest。
+智能体改动：在解析参数后使用strip检查，并调用parser.error。
+测试命令：../.venv-dev/bin/python -m pytest -q。
+人工检查：diff只含必要校验，无无关修改；再次测试通过。
+

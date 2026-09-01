@@ -1,0 +1,97 @@
+=== INSTANCE 03: reproducible wheel build ===
+SOURCE_DATE_EPOCH=1700000000
+* Getting build dependencies for wheel...
+running egg_info
+creating src/greetlab_25020007021.egg-info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/greetlab
+copying src/greetlab/cli.py -> build/lib/greetlab
+copying src/greetlab/__init__.py -> build/lib/greetlab
+running egg_info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/greetlab
+copying build/lib/greetlab/cli.py -> build/bdist.linux-x86_64/wheel/./greetlab
+copying build/lib/greetlab/__init__.py -> build/bdist.linux-x86_64/wheel/./greetlab
+running install_egg_info
+Copying src/greetlab_25020007021.egg-info to build/bdist.linux-x86_64/wheel/./greetlab_25020007021-0.1.0-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/greetlab_25020007021-0.1.0.dist-info/WHEEL
+creating '/home/dmh/桌面/system-tools-week3/q09/dist-repro/.tmp-_d9b6bv_/greetlab_25020007021-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'greetlab/__init__.py'
+adding 'greetlab/cli.py'
+adding 'greetlab_25020007021-0.1.0.dist-info/METADATA'
+adding 'greetlab_25020007021-0.1.0.dist-info/WHEEL'
+adding 'greetlab_25020007021-0.1.0.dist-info/entry_points.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/top_level.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built greetlab_25020007021-0.1.0-py3-none-any.whl
+* Getting build dependencies for wheel...
+running egg_info
+creating src/greetlab_25020007021.egg-info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/greetlab
+copying src/greetlab/cli.py -> build/lib/greetlab
+copying src/greetlab/__init__.py -> build/lib/greetlab
+running egg_info
+writing src/greetlab_25020007021.egg-info/PKG-INFO
+writing dependency_links to src/greetlab_25020007021.egg-info/dependency_links.txt
+writing entry points to src/greetlab_25020007021.egg-info/entry_points.txt
+writing top-level names to src/greetlab_25020007021.egg-info/top_level.txt
+reading manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+writing manifest file 'src/greetlab_25020007021.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/greetlab
+copying build/lib/greetlab/cli.py -> build/bdist.linux-x86_64/wheel/./greetlab
+copying build/lib/greetlab/__init__.py -> build/bdist.linux-x86_64/wheel/./greetlab
+running install_egg_info
+Copying src/greetlab_25020007021.egg-info to build/bdist.linux-x86_64/wheel/./greetlab_25020007021-0.1.0-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/greetlab_25020007021-0.1.0.dist-info/WHEEL
+creating '/home/dmh/桌面/system-tools-week3/q09/dist-repro/.tmp-_7z4414p/greetlab_25020007021-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'greetlab/__init__.py'
+adding 'greetlab/cli.py'
+adding 'greetlab_25020007021-0.1.0.dist-info/METADATA'
+adding 'greetlab_25020007021-0.1.0.dist-info/WHEEL'
+adding 'greetlab_25020007021-0.1.0.dist-info/entry_points.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/top_level.txt'
+adding 'greetlab_25020007021-0.1.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built greetlab_25020007021-0.1.0-py3-none-any.whl
+=== SHA-256 COMPARISON ===
+4852d0ed62a07625408a6e1ba2acb94cfe9fde90992a804e5276f85fcd454c14  build_a/greetlab_25020007021-0.1.0-py3-none-any.whl
+4852d0ed62a07625408a6e1ba2acb94cfe9fde90992a804e5276f85fcd454c14  build_b/greetlab_25020007021-0.1.0-py3-none-any.whl
+byte_identical=True
+reproducible_build=passed
