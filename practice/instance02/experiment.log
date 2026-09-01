@@ -1,0 +1,7 @@
+=== INSTANCE 02: real console exit-code baseline ===
+normal_exit=0
+normal_stdout=Hello, 25020007021!
+blank_exit_before_fix=0
+blank_stdout_before_fix=Hello,    !
+baseline_behavior_confirmed=True
+verification=passed

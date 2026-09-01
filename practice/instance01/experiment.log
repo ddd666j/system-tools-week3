@@ -1,0 +1,8 @@
+=== INSTANCE 01: inspect wheel as ZIP artifact ===
+5e9b22872709fd1abc87eb3ac4ada340e0d8be0b1b4f8c6f1a1c6b7fcddf7da8  ../../q09/dist/greetlab_25020007021-0.1.0-py3-none-any.whl
+wheel=greetlab_25020007021-0.1.0-py3-none-any.whl
+file_count=7
+metadata_ok=True
+entry_point_ok=True
+package_code_ok=True
+verification=passed
