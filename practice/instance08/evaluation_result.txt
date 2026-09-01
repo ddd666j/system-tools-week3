@@ -1,0 +1,5 @@
+train_outputs_equal=False
+eval_outputs_equal=True
+eval_requires_grad=False
+model_training_flag=False
+evaluation_contract=passed

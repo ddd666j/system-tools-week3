@@ -1,0 +1,7 @@
+/home/dmh/桌面/system-tools-week3/.venv-torch/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+first_gradient=-6.398807
+without_zero_grad=-12.797613
+after_zero_grad=-6.398807
+accumulation_ratio=2.00
+gradient_semantics=passed
