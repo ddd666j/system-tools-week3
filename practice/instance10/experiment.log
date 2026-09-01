@@ -1,0 +1,4 @@
+lr_0.1_trace= [6.1893415451049805, 1.0285245180130005, 3.062428959310637e-06]
+lr_2.0_trace= [6.1893415451049805, 1049537472.0, nan]
+stable_convergence= True
+large_lr_unstable= True
