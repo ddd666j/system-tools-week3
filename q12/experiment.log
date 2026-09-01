@@ -1,0 +1,43 @@
+=== Q12 STEP 1: environment and source ===
+/home/dmh/桌面/system-tools-week3/.venv-torch/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+3.12.13
+torch= 2.6.0+cpu
+device=cpu
+     1	import torch
+     2	from torch import nn
+     3	
+     4	
+     5	torch.manual_seed(20260907)
+     6	x = torch.linspace(-1, 1, 101).reshape(-1, 1)
+     7	y = 3 * x - 1
+     8	model = nn.Linear(1, 1)
+     9	loss_fn = nn.MSELoss()
+    10	opt = torch.optim.SGD(model.parameters(), lr=0.1)
+    11	
+    12	model.train()
+    13	for _ in range(200):
+    14	    pred = model(x)
+    15	    loss = loss_fn(pred, y)
+    16	    opt.zero_grad()
+    17	    loss.backward()
+    18	    opt.step()
+    19	
+    20	model.eval()
+    21	with torch.no_grad():
+    22	    final_loss = loss_fn(model(x), y).item()
+    23	    weight = model.weight.item()
+    24	    bias = model.bias.item()
+    25	    print(f"final_loss={final_loss:.10f}")
+    26	    print(f"weight={weight:.6f}")
+    27	    print(f"bias={bias:.6f}")
+    28	
+    29	if final_loss >= 0.001:
+    30	    raise SystemExit("final loss did not meet the requirement")
+    31	
+=== Q12 STEP 2: deterministic CPU training ===
+/home/dmh/桌面/system-tools-week3/.venv-torch/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+final_loss=0.0000000000
+weight=2.999997
+bias=-1.000000

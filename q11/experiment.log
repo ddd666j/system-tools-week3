@@ -1,0 +1,20 @@
+=== Q11: executable collaboration material ===
+# Issue：空白姓名未被拒绝
+
+环境：Windows版本待确认；greetlab 0.1.0。复现：`sdt-greet --name " "`。期望：输出参数错误并以状态码2退出。实际：输出`Hello,  !`并以状态码0退出。其他环境是否复现：待确认。
+
+# 提交信息
+
+拒绝空白姓名参数
+
+原实现仅检查参数是否存在，空白字符串仍生成无效问候语。解析后使用`strip`校验，空白时调用`parser.error`并以状态码2退出。
+
+# 评审意见
+
+**Blocking**：当前`--name`只含空白时仍成功，自动化脚本会把无效输入当作有效结果。请在参数解析后检查`args.name.strip()`，为空时调用`parser.error`，并增加退出码为2的回归测试。
+
+
+=== VALIDATION ===
+character_count=346
+required_sections=passed
+length_limit=passed
