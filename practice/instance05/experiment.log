@@ -1,0 +1,12 @@
+=== INSTANCE 05 STEP 1: reject vague issue ===
+file=issue_bad.md
+character_count=33
+missing_fields=环境,复现,期望,实际,待确认
+quality_gate=failed
+bad_issue_exit=1
+=== INSTANCE 05 STEP 2: verify executable issue ===
+file=issue_fixed.md
+character_count=139
+missing_fields=none
+quality_gate=passed
+communication_quality_gate=passed

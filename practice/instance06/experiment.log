@@ -1,0 +1,13 @@
+=== INSTANCE 06: deterministic PyTorch training ===
+/home/dmh/桌面/system-tools-week3/.venv-torch/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+torch= 2.6.0+cpu
+threads= 2
+/home/dmh/桌面/system-tools-week3/.venv-torch/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+seed_20260907_run1= ('0.0000000000', '2.9999973774', '-0.9999998808')
+seed_20260907_run2= ('0.0000000000', '2.9999973774', '-0.9999998808')
+seed_7_run= ('0.0000000000', '2.9999978542', '-0.9999998808')
+same_seed_identical=True
+all_losses_below_0.001=True
+reproducibility_verification=passed
